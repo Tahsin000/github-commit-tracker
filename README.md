@@ -2,19 +2,11 @@
 
 A React-based web application that allows users to track and visualize commits across all branches in a GitHub repository.
 
-## Features
 
-- Track commits from all branches in a GitHub repository
-- Sort commits by date
-- Display commit details including:
-  - Branch name
-  - Author
-  - Commit message
-  - Date
-- Secure authentication using GitHub personal access tokens
-- User-friendly interface with tooltips for guidance
-- Loading state indication during data fetching
-- Error handling and validation
+## UI 
+![UI Image Placeholder](public/image.png)
+
+
 
 ## Prerequisites
 
@@ -74,12 +66,3 @@ yarn start
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
-## UI 
-![UI Image Placeholder](public/image.png)
-
-
-
-## Security Note
-
-Never commit your GitHub token to version control. Always use environment variables or secure methods to handle sensitive information.
