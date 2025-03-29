@@ -1,4 +1,4 @@
-import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Avatar, Box, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { useState } from "react";
 import CommitDetailDialog from "./CommitDetailDialog";
 
@@ -15,6 +15,11 @@ const CommitTable = ({ commits }) => {
     setDialogOpen(true);
   };
 
+  // Generate a fallback avatar for commits without an avatar URL
+  const getFallbackAvatar = (author) => {
+    return `https://ui-avatars.com/api/?name=${encodeURIComponent(author)}&background=random`;
+  };
+
   return (
     <>
       <TableContainer component={Paper} sx={{ marginTop: 3, maxHeight: 600 }}>
@@ -23,7 +28,7 @@ const CommitTable = ({ commits }) => {
             <TableRow>
               <TableCell sx={{ minWidth: 70 }}><b>Sq</b></TableCell>
               <TableCell sx={{ minWidth: 120 }}><b>Branch</b></TableCell>
-              <TableCell sx={{ minWidth: 120 }}><b>Author</b></TableCell>
+              <TableCell sx={{ minWidth: 180 }}><b>Author</b></TableCell>
               <TableCell sx={{ minWidth: 300 }}><b>Message</b></TableCell>
               <TableCell sx={{ minWidth: 180 }}><b>Date</b></TableCell>
               <TableCell sx={{ minWidth: 100 }}><b>Action</b></TableCell>
@@ -39,7 +44,16 @@ const CommitTable = ({ commits }) => {
               >
                 <TableCell>{index + 1}</TableCell>
                 <TableCell>{commit.branch}</TableCell>
-                <TableCell>{commit.author}</TableCell>
+                <TableCell>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <Avatar 
+                      src={commit.avatarUrl || getFallbackAvatar(commit.author)}
+                      alt={commit.author}
+                      sx={{ width: 30, height: 30 }}
+                    />
+                    <Typography>{commit.author}</Typography>
+                  </Box>
+                </TableCell>
                 <TableCell sx={{ maxWidth: 400, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                   {commit.message}
                 </TableCell>
